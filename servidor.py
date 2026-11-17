@@ -2,7 +2,7 @@ import socket
 import threading
 
 # ==========================================
-# 1. CONFIGURACIÓN DE LA CONEXIÓN PRIMERO
+# CONEXION
 # ==========================================
 servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 servidor.bind(('127.0.0.1', 5000))
@@ -15,9 +15,8 @@ id_siguiente = 4
 
 print("Servidor TCP iniciado en el puerto 5000...")
 
-# ==========================================
-# 2. FUNCIONES DE LÓGICA Y MANEJO DE CLIENTES
-# ==========================================
+# =============== se escoje el rol  ================
+
 def manejar_cliente(conn, addr):
     global id_siguiente
     print("Nuevo cliente conectado desde:", addr)
@@ -35,7 +34,8 @@ def manejar_cliente(conn, addr):
         partes = mensaje.split('|')
         accion = partes[0]
         respuesta = ""
-        
+
+        #===== logica dentro del servidor============
         if (accion == "SALIR"):
             respuesta = "Sesion cerrada."
             conn.sendall(respuesta.encode('utf-8'))

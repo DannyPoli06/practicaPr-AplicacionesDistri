@@ -1,10 +1,11 @@
 import socket
 
-# ==========================================
-# 1. CONFIGURACIÓN DE LA CONEXIÓN PRIMERO
-# ==========================================
+# ============== CONEXION  =================
+
 cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 cliente.connect(('127.0.0.1', 5000))
+
+#============= se selecciona el rol ===========
 
 print("=== SISTEMA DE TIENDA (TCP) ===")
 rol = input("Ingresa tu rol (CLIENTE o ADMIN): ").strip().upper()
@@ -12,9 +13,8 @@ rol = input("Ingresa tu rol (CLIENTE o ADMIN): ").strip().upper()
 # Enviar rol inicial al servidor
 cliente.sendall(rol.encode('utf-8'))
 
-# ==========================================
-# 2. BUCLE PRINCIPAL DE INTERACCIÓN
-# ==========================================
+# =========== menu ================
+
 while (True):
     print("\n--- MENU (" + rol + ") ---")
     print("1. Consultar productos")
